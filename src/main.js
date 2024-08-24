@@ -8,7 +8,7 @@ const formEl = document.querySelector('.form');
 const inputEl = document.querySelector('.form-input');
 const gallery = document.querySelector('.gallery-list');
 export const loader = document.querySelector('.loader');
-export const loadMoreBtn = document.querySelector('.load-more-btn');
+const loadMoreBtn = document.querySelector('.load-more-btn');
 
 formEl.addEventListener('submit', submitForm);
 loadMoreBtn.addEventListener('click', loadMoreImg);
@@ -20,6 +20,9 @@ let currentPage = 1;
 
 async function submitForm(event) {
     event.preventDefault();
+    if (!loadMoreBtn.classList.contains('is-hidden')) {
+        loadMoreBtn.classList.add('is-hidden');
+    }
     gallery.innerHTML = '';
     searchedInfo = inputEl.value;
     if (searchedInfo === '') {
@@ -32,11 +35,10 @@ async function submitForm(event) {
         const infoFromServer = await axiosPhotos(searchedInfo, currentPage);
         if (infoFromServer.data.hits.length === 0) {
             loader.classList.add('is-hidden');
-            // loadMoreBtn.classList.add('is-hidden');
+            loadMoreBtn.classList.add('is-hidden');
             iziToast.error({
                 message: 'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight',
-                messageColor: 'white',
                 messageSize: '16',
                 color: 'red',
                 iconColor: 'white',
@@ -63,7 +65,6 @@ async function submitForm(event) {
         iziToast.error({
             message: err,
             position: 'center',
-            messageColor: 'white',
             messageSize: '16',
             color: 'red',
             iconColor: 'white',
@@ -73,7 +74,6 @@ async function submitForm(event) {
 
 async function loadMoreImg() {
     currentPage++;
-    // loader.classList.remove('is-hidden');
     try {
         const infoFromServer = await axiosPhotos(searchedInfo, currentPage);
 
@@ -105,7 +105,6 @@ async function loadMoreImg() {
         iziToast.error({
             message: err,
             position: 'center',
-            messageColor: 'white',
             messageSize: '16',
             color: 'red',
             iconColor: 'white'

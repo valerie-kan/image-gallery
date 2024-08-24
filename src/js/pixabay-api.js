@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { loader } from '../main';
-import { loadMoreBtn } from '../main';
 
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 export function axiosPhotos(value, page) {
     loader.classList.remove('is-hidden');
-    loadMoreBtn.classList.add('is-hidden');
     
     const axiosParams = {
         params: {
