@@ -1,18 +1,195 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-/* Common styles */
-@import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
+@import url('izitoast/dist/css/iziToast.min.css');
+@import url('simplelightbox/dist/simple-lightbox.min.css');
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+body {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+}
+
+p {
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 2;
+}
+
+p:not(:last-child) {
+    margin-right: 28px;
+}
+
+span {
+    font-weight: 600;
+    line-height: 1.33;
+}
+
+.form {
+    width: 371px;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 32px;
+    gap: 8px;
+}
+
+.form-input {
+    cursor: pointer;
+    border-radius: 4px;
+    border: solid 1px #808080;
+    width: 272px;
+    height: 40px;
+    padding-left: 16px;
+}
+
+button {
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 8px 16px;
+    height: 40px;
+    background-color: #4e75ff;
+    border: none;
+    transition: transform;
+}
+
+button:hover {
+    transform: background-color 250ms;
+    background-color: #6c8cff;
+}
+
+.form-btn {
+    width: 91px;
+}
+
+.load-more-btn {
+    width: 125px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.iziToast {
+    font-family: inherit;
+    line-height: inherit;
+    max-width: 432px;
+}
+
+.gallery-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gallery-item {
+    width: calc((100% - 54px) / 3);
+    border: 1px solid #808080;
+    transition: transform;
+}
+
+.gallery-img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.img-info {
+    display: flex;
+    padding: 4px 20px;
+}
+
+.is-hidden {
+    visibility: hidden;
+}
+
+.loader {
+    transform: rotateZ(45deg);
+    perspective: 1000px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: #808080;
+}
+
+.loader:before,
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 100px;
+    left: 500px;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    transform: rotateX(70deg);
+    animation: 1s spin linear infinite;
+}
+
+.loader:after {
+    color: #ff3d00;
+    transform: rotateY(70deg);
+    animation-delay: .4s;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotateZ(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+}
+
+@keyframes rotateccw {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+@keyframes spin {
+
+    0%,
+    100% {
+        box-shadow: .2em 0px 0 0px currentcolor;
+    }
+
+    12% {
+        box-shadow: .2em .2em 0 0 currentcolor;
+    }
+
+    25% {
+        box-shadow: 0 .2em 0 0px currentcolor;
+    }
+
+    37% {
+        box-shadow: -.2em .2em 0 0 currentcolor;
+    }
+
+    50% {
+        box-shadow: -.2em 0 0 0 currentcolor;
+    }
+
+    62% {
+        box-shadow: -.2em -.2em 0 0 currentcolor;
+    }
+
+    75% {
+        box-shadow: 0px -.2em 0 0 currentcolor;
+    }
+
+    87% {
+        box-shadow: .2em -.2em 0 0 currentcolor;
+    }
+}
