@@ -24,8 +24,8 @@ async function submitForm(event) {
         loadMoreBtn.classList.add('is-hidden');
     }
     gallery.innerHTML = '';
-    searchedInfo = inputEl.value;
-    if (searchedInfo === '' || searchedInfo.trim() === '') {
+    searchedInfo = inputEl.value.trim();
+    if (searchedInfo === '') {
         return
     }
 
@@ -63,21 +63,23 @@ async function submitForm(event) {
 
     } catch (err) {
         iziToast.error({
-            message: err,
+            message: err.message,
             position: 'center',
             messageSize: '16',
             color: 'red',
             iconColor: 'white',
         })
-        }
+    } finally {
+        loader.classList.add('is-hidden');
+    }
 }
 
 async function loadMoreImg() {
     currentPage++;
+    loader.classList.remove('is-hidden');
     try {
         const infoFromServer = await axiosPhotos(searchedInfo, currentPage);
 
-        loader.classList.add('is-hidden');
         const createGallery = infoFromServer.data.hits
             .map(imgDetail => renderGalleryItem(imgDetail))
             .join('');
@@ -92,7 +94,7 @@ async function loadMoreImg() {
             behavior: "smooth",
         });
 
-        if (currentPage === Number.parseInt(infoFromServer.data.total / 15)) {
+        if (currentPage === Math.ceil(infoFromServer.data.total / 15)) {
             loadMoreBtn.classList.add('is-hidden');
             iziToast.info({
             message: "We're sorry, but you've reached the end of search results.",
@@ -109,5 +111,7 @@ async function loadMoreImg() {
             color: 'red',
             iconColor: 'white'
         })
+    } finally {
+        loader.classList.add('is-hidden');
     }
 }
