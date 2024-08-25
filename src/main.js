@@ -25,10 +25,10 @@ async function submitForm(event) {
     }
     gallery.innerHTML = '';
     searchedInfo = inputEl.value;
-    if (searchedInfo === '') {
+    if (searchedInfo === '' || searchedInfo.trim() === '') {
         return
     }
-    
+
     currentPage = 1;
 
     try {
