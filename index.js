@@ -2,8 +2,8 @@ import{a as f,S as L,i as d}from"./assets/vendor-CRwkH7JT.js";(function(){const 
     <li class='gallery-item'>
         <a class='gallery-link' href='${e.largeImageURL}'>
         <img class='gallery-img' src='${e.webformatURL}' alt='${e.tags}'>
-        <div class='img-info'>
         </a>
+        <div class='img-info'>
         <p><span>Likes</span> ${e.likes}</p>
         <p><span>Views</span> ${e.views}</p>
         <p><span>Comments</span> ${e.comments}</p>
